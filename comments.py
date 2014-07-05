@@ -14,7 +14,7 @@ USERAGENT = "Hitler counter by /u/SirCaptain"
 #This is a short description of what the bot does. For example "/u/GoldenSights' Newsletter bot"
 SUBREDDIT = "all"
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
-PARENTSTRING = ["the", "hitler", "Hitler", "HITLER"]
+PARENTSTRING = ["hitler"]
 #These are the words you are looking for
 REPLYSTRING = "Way to go, Reddit was Hitler free for "
 #This is the word you want to put in reply
@@ -42,7 +42,7 @@ sql.commit()
 r = praw.Reddit(USERAGENT)
 r.login(USERNAME, PASSWORD) 
 
-# Main loo[
+# Main loop
 def scanSub():
     print('Searching '+ SUBREDDIT + '.')
     subreddit = r.get_subreddit(SUBREDDIT)
@@ -54,13 +54,13 @@ def scanSub():
     for post in posts:
         pid = post.id
         pts = post.created
-        permalink = post.permalink
         try:
             pauthor = post.author.name
         except AttributeError:
             pauthor = '[DELETED]'
         cur.execute('SELECT * FROM oldposts WHERE ID=?', [pid])
         if not cur.fetchone():
+            permalink = post.permalink
             cur.execute('INSERT INTO oldposts VALUES(?, ?, ?)', [pid, pts, permalink])
             # Get the time since last comment about Hitler
             current_timestamp = datetime.datetime.fromtimestamp(pts)
@@ -71,7 +71,11 @@ def scanSub():
             if any(key.lower() in pbody for key in PARENTSTRING):
                 if pauthor != USERNAME:
                     print('Replying to ' + pid + ' by ' + pauthor + ' at ' + str(pts))
-                    print(REPLYSTRING + '%d hours %d minutes %d seconds' % (tl.hours, tl.minutes, tl.seconds))
+                    print(REPLYSTRING + ('%d hours %d minutes %d seconds ' % (tl.hours, tl.minutes, tl.seconds)) + '<br> ' + lastpermalink)
+                    post.reply(REPLYSTRING + ('%d hours %d minutes %d seconds ' % (tl.hours, tl.minutes, tl.seconds)) + '<br> ' + lastpermalink)
+
+    # commit matched posts to db
+    sql.commit()
 
 # Run loop, wait, run loop
 while True:
