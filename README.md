@@ -1,4 +1,4 @@
 Hitlerbot - A Reddit bot
 ========================
 
-Hitler Counter Bot 0.1 by /u/hitlerbot
+A bot that replies to comments in any thread matchin keywords

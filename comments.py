@@ -6,17 +6,17 @@ import sqlite3
 
 '''USER CONFIGURATION'''
 
-USERNAME  = "hitlerbot"
-#This is the bot's Username. In order to send mail, he must have some amount of Karma.
-OTHERBOT = "Godwins_Law_Bot"
-#Don't comment to this other bo that's doing the exact same thing (it might be funny thought)
+USERNAME  = "mybot"
+#Bot's Username.
+OTHERBOT = "sircaptain"
+#Don't comment to these people.
 PASSWORD  = ""
-#This is the bot's Password. 
+#bot's Password. 
 USERAGENT = "Hitler counter by /u/SirCaptain"
 #This is a short description of what the bot does. For example "/u/GoldenSights' Newsletter bot"
 SUBREDDIT = "all-worldnews"
 #This is the sub or list of subs to scan for new posts. For a single sub, use "sub1". For multiple subreddits, use "sub1+sub2+sub3+..."
-PARENTSTRING = ["hitler"]
+PARENTSTRING = ["keyword"]
 #These are the words you are looking for
 REPLYSTRING = "Way to go, Reddit was Hitler free for "
 #This is the word you want to put in reply
