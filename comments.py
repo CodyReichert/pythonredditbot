@@ -10,7 +10,7 @@ USERNAME  = "hitlerbot"
 #This is the bot's Username. In order to send mail, he must have some amount of Karma.
 OTHERBOT = "Godwins_Law_Bot"
 #Don't comment to this other bo that's doing the exact same thing (it might be funny thought)
-PASSWORD  = "am56nesia"
+PASSWORD  = ""
 #This is the bot's Password. 
 USERAGENT = "Hitler counter by /u/SirCaptain"
 #This is a short description of what the bot does. For example "/u/GoldenSights' Newsletter bot"
@@ -24,9 +24,6 @@ MAXPOSTS = 400
 #This is how many posts you want to retrieve all at once. PRAW can download 100 at a time.
 WAIT = 10
 #This is how many seconds you will wait between cycles. The bot is completely inactive during this time.
-
-'''All done!'''
-
 WAITS = str(WAIT)
 
 # Connect to DB, create if its not there
